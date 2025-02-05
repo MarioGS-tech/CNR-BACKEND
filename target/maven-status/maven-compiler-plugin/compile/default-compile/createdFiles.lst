@@ -54,7 +54,6 @@ sv\gov\cnr\cnrpos\controllers\PDFController.class
 sv\gov\cnr\cnrpos\entities\UserCompany.class
 sv\gov\cnr\cnrpos\controllers\ComprasController.class
 sv\gov\cnr\cnrpos\models\dto\ReportSeccionDTO.class
-sv\gov\cnr\cnrpos\controllers\TransaccionController$2.class
 sv\gov\cnr\cnrpos\entities\Rango.class
 sv\gov\cnr\cnrpos\models\enums\EstatusCola.class
 sv\gov\cnr\cnrpos\repositories\security\RolRepository.class
@@ -150,6 +149,7 @@ sv\gov\cnr\cnrpos\models\dto\RolDTO.class
 sv\gov\cnr\cnrpos\models\mappers\security\PermisosMapper.class
 sv\gov\cnr\cnrpos\models\dto\KpiDTO.class
 sv\gov\cnr\cnrpos\models\enums\FormaDePago.class
+sv\gov\cnr\cnrpos\controllers\ClienteController.class
 sv\gov\cnr\cnrpos\models\security\Token.class
 sv\gov\cnr\cnrpos\repositories\RcatalogoRepository.class
 sv\gov\cnr\cnrpos\entities\Compra.class

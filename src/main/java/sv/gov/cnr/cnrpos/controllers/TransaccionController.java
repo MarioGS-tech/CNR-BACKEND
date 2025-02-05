@@ -3,6 +3,7 @@ package sv.gov.cnr.cnrpos.controllers;
 import jakarta.validation.Valid;
 import lombok.extern.slf4j.Slf4j;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.data.domain.Page;
@@ -12,6 +13,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.RestClientException;
 import org.springframework.web.client.RestTemplate;
+import sv.gov.cnr.cnrpos.entities.Cliente;
 import sv.gov.cnr.cnrpos.entities.Company;
 import sv.gov.cnr.cnrpos.entities.Sucursal;
 import sv.gov.cnr.cnrpos.entities.Transaccion;
@@ -19,6 +21,7 @@ import sv.gov.cnr.cnrpos.models.ClienteResponse;
 import sv.gov.cnr.cnrpos.models.ProductoResponse;
 import sv.gov.cnr.cnrpos.models.dto.DocumentoDTO;
 import sv.gov.cnr.cnrpos.models.dto.TransaccionDTO;
+import sv.gov.cnr.cnrpos.repositories.ClienteRepository;
 import sv.gov.cnr.cnrpos.services.CompanyService;
 import sv.gov.cnr.cnrpos.services.DocumentoAsociadoService;
 import sv.gov.cnr.cnrpos.services.RcatalogoService;
@@ -44,11 +47,13 @@ public class TransaccionController {
     private final CompanyService companyService;
     private final AuthenticationService authenticationService;
     private final DocumentoAsociadoService documentoAsociadoService;
+    @Autowired
+    private ClienteRepository clienteRepository;
 
     @Value("${configuracion.url-api-productos}")
-    private String urlProductos; 
+    private String urlProductos;
     @Value("${configuracion.url-api-clientes}")
-    private String urlClientes; 
+    private String urlClientes;
 
 
 
@@ -98,7 +103,7 @@ public class TransaccionController {
                         || company.getDeletedAt().toLocalDateTime().toString().isEmpty())
                 .collect(Collectors.toList());
 
-                
+
 
         // Verificar si el usuario tiene el rol "root"
         boolean esRoot = usuario.getRoles().stream()
@@ -147,8 +152,8 @@ public class TransaccionController {
 
         // AMBIENTE LOCAL
         // List<Map<String, Object>> entidades = obtenerEntidades();
-         //List<Map<String, Object>> entidades = obtenerEntidades();
-         //List<Map<String, Object>> items = obtenerItems();
+        //List<Map<String, Object>> entidades = obtenerEntidades();
+        //List<Map<String, Object>> items = obtenerItems();
 
         Map<String, Object> catalogos = new HashMap<>();
 
@@ -440,13 +445,14 @@ public class TransaccionController {
         return entidades;
     }
 
+    //NUEVA
     public List<ClienteResponse> obtenerEntidadesCNR() {
         List<ClienteResponse> clientes = new ArrayList<>();
 
-        // Crear y agregar un elemento extra a la lista
+        // Crear y agregar un cliente extra
         ClienteResponse clienteExtra = new ClienteResponse();
         clienteExtra.setName("Cliente Extra");
-        clienteExtra.setTipo_documento(0); // Asignar valores adecuados
+        clienteExtra.setTipo_documento(0);
         clienteExtra.setNit("00000000000000");
         clienteExtra.setDui(null);
         clienteExtra.setNrc("00000");
@@ -462,36 +468,41 @@ public class TransaccionController {
         clienteExtra.setDescuento(null);
         clienteExtra.setContribuyente("Extra");
 
-        // Concatenar campos para el cliente extra
         clienteExtra.concatenarCampos();
-
-        // Agregar el cliente extra a la lista
         clientes.add(clienteExtra);
 
-        try {
-            // Hacer la llamada GET al endpoint y obtener la respuesta
-            ResponseEntity<List<ClienteResponse>> responseEntity = restTemplate.exchange(
-                    urlClientes,
-                    HttpMethod.GET, null, new ParameterizedTypeReference<List<ClienteResponse>>() {
-                    });
-
-            // Si la lista de clientes es null, inicializarla
-            if (responseEntity.getBody() != null) {
-                List<ClienteResponse> clientesObtenidos = responseEntity.getBody();
-                for (ClienteResponse cliente : clientesObtenidos) {
-                    cliente.concatenarCampos();
-                }
-                clientes.addAll(clientesObtenidos);
-            }
-        } catch (RestClientException e) {
-            // Manejar la excepción (por ejemplo, loguear el error)
-            System.err.println("Error al obtener entidades CNR: " + e.getMessage());
-            // Aquí podrías agregar más lógica de manejo de errores si es necesario
+        // Obtener clientes de la base de datos y convertirlos a ClienteResponse
+        List<Cliente> clientesBD = clienteRepository.findAll();
+        for (Cliente cliente : clientesBD) {
+            ClienteResponse response = convertirAClienteResponse(cliente);
+            response.concatenarCampos();
+            clientes.add(response);
         }
 
-        // Devolver la lista modificada
         return clientes;
     }
+
+    private ClienteResponse convertirAClienteResponse(Cliente cliente) {
+        ClienteResponse response = new ClienteResponse();
+        response.setName(cliente.getNombre()); // <-- Aquí está el cambio
+        response.setTipo_documento(Integer.parseInt(cliente.getTipoDocumento())); // Convertimos String a Integer
+        response.setNit(cliente.getNit());
+        response.setDui(cliente.getNumeroDocumento());
+        response.setNrc(cliente.getNrc());
+        response.setDireccion(cliente.getDireccion());
+        response.setActividad_codigo(cliente.getActividadEconomica()); // Ajustar si es necesario
+        response.setActividad_nombre("Actividad no especificada"); // No existe en la entidad Cliente
+        response.setDepartamento_codigo(cliente.getDepartamento()); // Asumiendo que el código del depto está en "departamento"
+        response.setDepartamento_nombre(cliente.getDepartamento()); // Si necesitas el nombre, ajusta aquí
+        response.setMunicipio_codigo(cliente.getMunicipio()); // Asumiendo que el código del municipio está en "municipio"
+        response.setMunicipio_nombre(cliente.getMunicipio()); // Si necesitas el nombre, ajusta aquí
+        response.setCorreo(cliente.getEmail());
+        response.setTelefono(cliente.getTelefono());
+        response.setDescuento(cliente.getPorcentajeDescuento() != null ? String.valueOf(cliente.getPorcentajeDescuento()) : null);
+        response.setContribuyente(cliente.getDescripcionDescuento()); // Ajusta si es necesario
+        return response;
+    }
+
 
     public List<Map<String, Object>> obtenerItems() {
         List<Map<String, Object>> items = new ArrayList<>();

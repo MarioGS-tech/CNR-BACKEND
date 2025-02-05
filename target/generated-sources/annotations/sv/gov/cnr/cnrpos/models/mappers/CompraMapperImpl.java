@@ -20,7 +20,7 @@ import sv.gov.cnr.cnrpos.models.security.User.UserBuilder;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2025-02-04T14:11:12-0600",
+    date = "2025-02-05T16:18:12-0600",
     comments = "version: 1.4.2.Final, compiler: javac, environment: Java 17.0.10 (Oracle Corporation)"
 )
 @Component

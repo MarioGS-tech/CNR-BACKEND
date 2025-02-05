@@ -9,6 +9,7 @@ import sv.gov.cnr.cnrpos.exceptions.TransaccionException;
 import sv.gov.cnr.cnrpos.models.ClienteCNR;
 import sv.gov.cnr.cnrpos.repositories.ClienteRepository;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -19,6 +20,17 @@ public class ClienteService {
     private final CatalogoService catalogoService;
 
 
+    //Implementacion de nuevo Cliente
+
+    public List<Cliente> obtenerTodosLosClientes() {
+        return clienteRepository.findAll();
+    }
+
+    public Cliente obtenerClientePorId(Long id) {
+        return clienteRepository.findById(id).orElse(null);
+    }
+
+    //Implementacion de nuevo Cliente
     public Cliente findClienteById(Long idCliente) {
         return clienteRepository.findById(idCliente).orElse(null);
     }

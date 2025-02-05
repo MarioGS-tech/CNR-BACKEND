@@ -32,7 +32,7 @@ public class ClienteResponse {
     private String contribuyente;
     private String aplica_retencion;
     private String es_contribuyente; // determina si es nit o dui el documento
-    
+
 
     // Nuevo campo para el nombre concatenado
     private String nombreConcatenado;
