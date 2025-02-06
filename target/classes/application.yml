@@ -34,8 +34,8 @@ cnrapps:
 configuracion:
   # url-api-clientes: ${url_cliente}
   # url-api-productos: ${url_productos}
-  url-api-clientes: "https://api-desa.cnr.gob.sv/apifacturael/api/consulta/clientes" #${url_cliente}
-  url-api-productos: "https://api-desa.cnr.gob.sv/apifacturael/api/consulta/productos" #${url_productos}
+  #url-api-clientes: "https://api-desa.cnr.gob.sv/apifacturael/api/consulta/clientes" #${url_cliente}
+  #url-api-productos: "https://api-desa.cnr.gob.sv/apifacturael/api/consulta/productos" #${url_productos}
   password-user-new: root123
 
 jwt:

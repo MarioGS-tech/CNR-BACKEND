@@ -13,7 +13,6 @@ sv\gov\cnr\cnrpos\services\RolService.class
 sv\gov\cnr\cnrpos\models\idscompuestos\RolesPermisosId.class
 sv\gov\cnr\cnrpos\entities\TesoreriaReporte.class
 sv\gov\cnr\cnrpos\models\dto\CuerpoDocCrDTO.class
-sv\gov\cnr\cnrpos\controllers\TransaccionController$1.class
 sv\gov\cnr\cnrpos\models\mappers\MenuItemsMapper.class
 sv\gov\cnr\cnrpos\exceptions\ResourceNotFoundException.class
 sv\gov\cnr\cnrpos\models\mappers\security\UserMenuMapper.class
@@ -72,6 +71,7 @@ sv\gov\cnr\cnrpos\controllers\UserController.class
 sv\gov\cnr\cnrpos\models\dto\ReporteDTO.class
 sv\gov\cnr\cnrpos\exceptions\TransaccionException.class
 sv\gov\cnr\cnrpos\entities\PermisosMenuItems.class
+sv\gov\cnr\cnrpos\repositories\ProductoRepository.class
 sv\gov\cnr\cnrpos\entities\Menu.class
 sv\gov\cnr\cnrpos\services\SucursalService.class
 sv\gov\cnr\cnrpos\services\CatalogoService.class
@@ -89,11 +89,14 @@ sv\gov\cnr\cnrpos\models\enums\TipoDocumentoReceptor.class
 sv\gov\cnr\cnrpos\models\ClienteResponse.class
 sv\gov\cnr\cnrpos\models\dto\ReporteTesoreriaDTO.class
 sv\gov\cnr\cnrpos\repositories\MenuRepository.class
+sv\gov\cnr\cnrpos\controllers\ProductoController.class
 sv\gov\cnr\cnrpos\models\ItemDTO.class
 sv\gov\cnr\cnrpos\controllers\PermissionController.class
 sv\gov\cnr\cnrpos\models\enums\CondicionOperacion.class
 sv\gov\cnr\cnrpos\models\dto\ReportSeccionDTO$Reporte.class
+sv\gov\cnr\cnrpos\services\ProductoService.class
 sv\gov\cnr\cnrpos\entities\Sucursal.class
+sv\gov\cnr\cnrpos\entities\Producto$ProductoBuilder.class
 sv\gov\cnr\cnrpos\exceptions\CustomException.class
 sv\gov\cnr\cnrpos\models\dto\PermissionDTO.class
 sv\gov\cnr\cnrpos\entities\Item.class
@@ -162,11 +165,13 @@ sv\gov\cnr\cnrpos\entities\RCatalogos.class
 sv\gov\cnr\cnrpos\security\RegisterRequest$RegisterRequestBuilder.class
 sv\gov\cnr\cnrpos\services\RangoService.class
 sv\gov\cnr\cnrpos\repositories\CompraRepository.class
+sv\gov\cnr\cnrpos\entities\Producto.class
 sv\gov\cnr\cnrpos\models\dto\MenuItemsDTO.class
 sv\gov\cnr\cnrpos\models\SucursalProjection.class
 sv\gov\cnr\cnrpos\services\sissuc\SissucService.class
 sv\gov\cnr\cnrpos\utils\RequestParamParser.class
 sv\gov\cnr\cnrpos\models\dto\UserMenuDTO.class
+sv\gov\cnr\cnrpos\models\ProductoResponse$ProductoResponseBuilder.class
 sv\gov\cnr\cnrpos\repositories\TesoreriaReporteRepository.class
 sv\gov\cnr\cnrpos\entities\Cliente$ClienteBuilder.class
 sv\gov\cnr\cnrpos\controllers\security\AuthenticationController.class

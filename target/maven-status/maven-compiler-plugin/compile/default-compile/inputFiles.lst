@@ -30,6 +30,8 @@ C:\Users\meev2\Desktop\factElectrCnrPuntoDeVentaBackend\factElectrCnrPuntoDeVent
 C:\Users\meev2\Desktop\factElectrCnrPuntoDeVentaBackend\factElectrCnrPuntoDeVentaBackend\src\main\java\sv\gov\cnr\cnrpos\entities\RolesPermisos.java
 C:\Users\meev2\Desktop\factElectrCnrPuntoDeVentaBackend\factElectrCnrPuntoDeVentaBackend\src\main\java\sv\gov\cnr\cnrpos\models\mappers\MenuItemsMapper.java
 C:\Users\meev2\Desktop\factElectrCnrPuntoDeVentaBackend\factElectrCnrPuntoDeVentaBackend\src\main\java\sv\gov\cnr\cnrpos\services\DocumentoAsociadoService.java
+C:\Users\meev2\Desktop\factElectrCnrPuntoDeVentaBackend\factElectrCnrPuntoDeVentaBackend\src\main\java\sv\gov\cnr\cnrpos\entities\Producto.java
+C:\Users\meev2\Desktop\factElectrCnrPuntoDeVentaBackend\factElectrCnrPuntoDeVentaBackend\src\main\java\sv\gov\cnr\cnrpos\services\ProductoService.java
 C:\Users\meev2\Desktop\factElectrCnrPuntoDeVentaBackend\factElectrCnrPuntoDeVentaBackend\src\main\java\sv\gov\cnr\cnrpos\repositories\ClienteRepository.java
 C:\Users\meev2\Desktop\factElectrCnrPuntoDeVentaBackend\factElectrCnrPuntoDeVentaBackend\src\main\java\sv\gov\cnr\cnrpos\utils\RequestParamParser.java
 C:\Users\meev2\Desktop\factElectrCnrPuntoDeVentaBackend\factElectrCnrPuntoDeVentaBackend\src\main\java\sv\gov\cnr\cnrpos\entities\Item.java
@@ -90,6 +92,7 @@ C:\Users\meev2\Desktop\factElectrCnrPuntoDeVentaBackend\factElectrCnrPuntoDeVent
 C:\Users\meev2\Desktop\factElectrCnrPuntoDeVentaBackend\factElectrCnrPuntoDeVentaBackend\src\main\java\sv\gov\cnr\cnrpos\config\ApplicationConfig.java
 C:\Users\meev2\Desktop\factElectrCnrPuntoDeVentaBackend\factElectrCnrPuntoDeVentaBackend\src\main\java\sv\gov\cnr\cnrpos\config\WebConfig.java
 C:\Users\meev2\Desktop\factElectrCnrPuntoDeVentaBackend\factElectrCnrPuntoDeVentaBackend\src\main\java\sv\gov\cnr\cnrpos\entities\PermisosMenuItems.java
+C:\Users\meev2\Desktop\factElectrCnrPuntoDeVentaBackend\factElectrCnrPuntoDeVentaBackend\src\main\java\sv\gov\cnr\cnrpos\repositories\ProductoRepository.java
 C:\Users\meev2\Desktop\factElectrCnrPuntoDeVentaBackend\factElectrCnrPuntoDeVentaBackend\src\main\java\sv\gov\cnr\cnrpos\controllers\security\AuthenticationController.java
 C:\Users\meev2\Desktop\factElectrCnrPuntoDeVentaBackend\factElectrCnrPuntoDeVentaBackend\src\main\java\sv\gov\cnr\cnrpos\models\ProductoResponse.java
 C:\Users\meev2\Desktop\factElectrCnrPuntoDeVentaBackend\factElectrCnrPuntoDeVentaBackend\src\main\java\sv\gov\cnr\cnrpos\exceptions\ErrorResponse.java
@@ -127,6 +130,7 @@ C:\Users\meev2\Desktop\factElectrCnrPuntoDeVentaBackend\factElectrCnrPuntoDeVent
 C:\Users\meev2\Desktop\factElectrCnrPuntoDeVentaBackend\factElectrCnrPuntoDeVentaBackend\src\main\java\sv\gov\cnr\cnrpos\controllers\CompanyController.java
 C:\Users\meev2\Desktop\factElectrCnrPuntoDeVentaBackend\factElectrCnrPuntoDeVentaBackend\src\main\java\sv\gov\cnr\cnrpos\entities\Rango.java
 C:\Users\meev2\Desktop\factElectrCnrPuntoDeVentaBackend\factElectrCnrPuntoDeVentaBackend\src\main\java\sv\gov\cnr\cnrpos\entities\ComprobantePago.java
+C:\Users\meev2\Desktop\factElectrCnrPuntoDeVentaBackend\factElectrCnrPuntoDeVentaBackend\src\main\java\sv\gov\cnr\cnrpos\controllers\ProductoController.java
 C:\Users\meev2\Desktop\factElectrCnrPuntoDeVentaBackend\factElectrCnrPuntoDeVentaBackend\src\main\java\sv\gov\cnr\cnrpos\services\CompraService.java
 C:\Users\meev2\Desktop\factElectrCnrPuntoDeVentaBackend\factElectrCnrPuntoDeVentaBackend\src\main\java\sv\gov\cnr\cnrpos\models\dto\PuntoVentaDTO.java
 C:\Users\meev2\Desktop\factElectrCnrPuntoDeVentaBackend\factElectrCnrPuntoDeVentaBackend\src\main\java\sv\gov\cnr\cnrpos\entities\Sucursal.java

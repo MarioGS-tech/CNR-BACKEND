@@ -13,15 +13,13 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.RestClientException;
 import org.springframework.web.client.RestTemplate;
-import sv.gov.cnr.cnrpos.entities.Cliente;
-import sv.gov.cnr.cnrpos.entities.Company;
-import sv.gov.cnr.cnrpos.entities.Sucursal;
-import sv.gov.cnr.cnrpos.entities.Transaccion;
+import sv.gov.cnr.cnrpos.entities.*;
 import sv.gov.cnr.cnrpos.models.ClienteResponse;
 import sv.gov.cnr.cnrpos.models.ProductoResponse;
 import sv.gov.cnr.cnrpos.models.dto.DocumentoDTO;
 import sv.gov.cnr.cnrpos.models.dto.TransaccionDTO;
 import sv.gov.cnr.cnrpos.repositories.ClienteRepository;
+import sv.gov.cnr.cnrpos.repositories.ProductoRepository;
 import sv.gov.cnr.cnrpos.services.CompanyService;
 import sv.gov.cnr.cnrpos.services.DocumentoAsociadoService;
 import sv.gov.cnr.cnrpos.services.RcatalogoService;
@@ -49,11 +47,13 @@ public class TransaccionController {
     private final DocumentoAsociadoService documentoAsociadoService;
     @Autowired
     private ClienteRepository clienteRepository;
+    @Autowired
+    private ProductoRepository productoRepository;
 
-    @Value("${configuracion.url-api-productos}")
-    private String urlProductos;
-    @Value("${configuracion.url-api-clientes}")
-    private String urlClientes;
+    //@Value("${configuracion.url-api-productos}")
+    //private String urlProductos;
+    //@Value("${configuracion.url-api-clientes}")
+    //private String urlClientes;
 
 
 
@@ -445,7 +445,7 @@ public class TransaccionController {
         return entidades;
     }
 
-    //NUEVA
+    //Obtener lista de clientes:
     public List<ClienteResponse> obtenerEntidadesCNR() {
         List<ClienteResponse> clientes = new ArrayList<>();
 
@@ -604,28 +604,62 @@ public class TransaccionController {
         return items;
     }
 
+    //Obtener lista de productos
+//    public List<ProductoResponse> obtenerItemsCNR() {
+//        List<ProductoResponse> items = new ArrayList<>();
+//
+//        try {
+//            ResponseEntity<List<ProductoResponse>> responseEntity = restTemplate.exchange(
+//                    urlProductos,
+//                    HttpMethod.GET, null, new ParameterizedTypeReference<List<ProductoResponse>>() {
+//                    });
+//
+//            // Si la respuesta no es null, asignar a items
+//            if (responseEntity.getBody() != null) {
+//                items = responseEntity.getBody();
+//            }
+//        } catch (RestClientException e) {
+//            // Manejar la excepción (por ejemplo, loguear el error)
+//            System.err.println("Error al obtener items CNR: " + e.getMessage());
+//            // Aquí podrías agregar más lógica de manejo de errores si es necesario
+//        }
+//
+//        // Devolver la lista de items (vacía si hubo un error)
+//        return items;
+//    }
+
+
+    //Obtener lista de productos
     public List<ProductoResponse> obtenerItemsCNR() {
-        List<ProductoResponse> items = new ArrayList<>();
-
-        try {
-            ResponseEntity<List<ProductoResponse>> responseEntity = restTemplate.exchange(
-                    urlProductos,
-                    HttpMethod.GET, null, new ParameterizedTypeReference<List<ProductoResponse>>() {
-                    });
-
-            // Si la respuesta no es null, asignar a items
-            if (responseEntity.getBody() != null) {
-                items = responseEntity.getBody();
-            }
-        } catch (RestClientException e) {
-            // Manejar la excepción (por ejemplo, loguear el error)
-            System.err.println("Error al obtener items CNR: " + e.getMessage());
-            // Aquí podrías agregar más lógica de manejo de errores si es necesario
-        }
-
-        // Devolver la lista de items (vacía si hubo un error)
-        return items;
+        return productoRepository.findAll()
+                .stream()
+                .map(this::convertirAProductoResponse)
+                .collect(Collectors.toList());
     }
+
+    private ProductoResponse convertirAProductoResponse(Producto producto) {
+        return ProductoResponse.builder()
+                .cod_id(producto.getCod_id()) // ⚠️ Se cambió de getIdProducto() a getCod_id()
+                .clasificacion(producto.getClasificacion())
+                .codigo_producto(producto.getCodigo_producto()) // ⚠️ Se cambió de getCodigoProducto() a getCodigo_producto()
+                .nombre(producto.getNombre())
+                .descripcion(producto.getDescripcion())
+                .codigo_ingreso(producto.getCodigo_ingreso()) // ⚠️ Se cambió de getCodigoIngreso() a getCodigo_ingreso()
+                .precio(producto.getPrecio())
+                .iva(producto.getIva())
+                .tipo(producto.getTipo())
+                .total(producto.getTotal())
+                .estado(producto.getEstado())
+                .editable(producto.getEditable())
+                .createdAt(producto.getCreatedAt())
+                .updatedAt(producto.getUpdatedAt())
+                .deletedAt(producto.getDeletedAt())
+                .build();
+    }
+
+
+
+
 
 
 }

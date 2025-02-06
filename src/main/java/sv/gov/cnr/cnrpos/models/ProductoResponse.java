@@ -1,28 +1,31 @@
 package sv.gov.cnr.cnrpos.models;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.AllArgsConstructor;
-import lombok.Getter;
+import lombok.Builder;
+import lombok.Data;
 import lombok.NoArgsConstructor;
-import lombok.Setter;
 
+import java.math.BigDecimal;
+import java.sql.Timestamp;
+
+@Data
+@Builder
 @NoArgsConstructor
 @AllArgsConstructor
-@Getter
-@Setter
-@JsonIgnoreProperties(ignoreUnknown = true)
 public class ProductoResponse {
-
-    private int cod_id;
+    private Long cod_id; // ⚠️ Asegurado que coincida con Producto (idProducto)
     private String clasificacion;
     private String codigo_producto;
     private String nombre;
     private String descripcion;
     private String codigo_ingreso;
-    private double precio;
-    private double iva;
+    private BigDecimal precio;
+    private BigDecimal iva;
     private String tipo;
-    private double total;
+    private BigDecimal total;
     private String estado;
     private String editable;
+    private Timestamp createdAt;
+    private Timestamp updatedAt;
+    private Timestamp deletedAt;
 }
